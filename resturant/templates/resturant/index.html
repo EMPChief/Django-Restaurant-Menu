@@ -1,0 +1,32 @@
+{% extends 'resturant/base.html' %}
+
+{% block title %}Restaurant Menu{% endblock %}
+
+{% block heading %}Restaurant Menu{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-5">Menu</h1>
+
+    {% for meal_type, meal_name in meals %}
+    <div class="mb-4">
+        <h2>{{ meal_name }}</h2>
+        <div class="row">
+            {% for dish in object_list %}
+            {% if dish.meal_type == meal_type %}
+            <div class="col-md-4">
+                <a href="{% url 'resturant:dish_detail' dish.id %}" class="card mb-3 {% if dish.availability_status == 1 %}unavailable{% endif %}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ dish.name }}</h5>
+                        <p class="card-text">Price: ${{ dish.price }}</p>
+                        <p>{{ dish.description }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

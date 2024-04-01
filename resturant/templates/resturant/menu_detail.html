@@ -1,0 +1,37 @@
+{% extends 'resturant/base.html' %}
+
+{% block title %}Dish Details{% endblock %}
+
+{% block heading %}Dish Details{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-5">Details</h1>
+
+    <div class="dish-details">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>{{ dish.name }}</h3>
+                <p class="label">Description:</p>
+                <p>{{ dish.description }}</p>
+                <p class="label">Meal Type:</p>
+                <p>{{ dish.meal_type }}</p>
+                <p class="label">Price:</p>
+                <p>${{ dish.price }}</p>
+                <p class="label">Availability:</p>
+                {% if dish.availability_status == 0 %}
+                    <p>Available</p>
+                {% else %}
+                    <p class="unavailable">Unavailable</p>
+                {% endif %}
+                <p class="label">Author:</p>
+                <p>{{ dish.author.username }}</p>
+                <p class="label">Date Created:</p>
+                <p>{{ dish.date_created }}</p>
+                <p class="label">Last Updated:</p>
+                <p>{{ dish.date_updated }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
